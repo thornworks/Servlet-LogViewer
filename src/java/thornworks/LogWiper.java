@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package thornworks;
 
 import java.io.*;
@@ -11,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *  Erases the contents of a log file.
+ * Erases the contents of a log file and then re-directs back to the list of log
+ * files available for viewing
+ * 
  * @author LaSpina
  */
 public class LogWiper extends HttpServlet {
@@ -54,14 +52,19 @@ public class LogWiper extends HttpServlet {
         }
     }
 
-    private boolean wipe(File logFile) throws FileNotFoundException {
+    /**
+     * Wipes a given log file clean without deleting the file. The contents of 
+     * the file are replaced with a single line of text indicating when the
+     * log file was erased.
+     * @param logFile a reference to the file we wish to erase.
+     * @throws FileNotFoundException 
+     */
+    private void wipe(File logFile) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(logFile);
         java.util.Date now = new java.util.Date();
         pw.print("Log contents were wiped clean on ");
         pw.println(now);
         pw.close();
-        //http://foglog.rs.af.cm/localhost.2012-09-03.log
-        return true;
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -66,7 +66,6 @@ public class LogViewServlet extends HttpServlet {
         File webAppPath = new File(tomcatRoot, "webapps");
         String[] fileList = webAppPath.list();
         StringBuilder sb = new StringBuilder();
-        //sb.append("<h3>Running Web Applications path=");
         try {
             /*sb.append(webAppPath.getCanonicalPath());
             sb.append("</h3>");
@@ -108,18 +107,9 @@ public class LogViewServlet extends HttpServlet {
             }
         }
         catch(IOException ioe) { 
-            //sb.append(ioe.toString());
+            sb.append("<br/>Error: ");
+            sb.append(ioe.toString());
         }
         return sb.toString();
     }
-    
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "LogView renders a list of all available log files as links and also displays a list of running web applications within the same container context.";
-    }// </editor-fold>
 }

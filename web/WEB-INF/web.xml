@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app metadata-complete="true" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>LogViewServlet</servlet-name>
+        <servlet-class>thornworks.LogViewServlet</servlet-class>
+        <init-param>
+            <description>The relative path to the Tomcat root directory (Catalina Base). Normally Tomcat is run from the /bin/ directory, so the base path is one level above this.</description>
+            <param-name>basePath</param-name>
+            <param-value>./</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>RenderFileServlet</servlet-name>
+        <servlet-class>thornworks.RenderFileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogWiper</servlet-name>
+        <servlet-class>thornworks.LogWiper</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogViewServlet</servlet-name>
+        <url-pattern>/View</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenderFileServlet</servlet-name>
+        <url-pattern>*.log</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogWiper</servlet-name>
+        <url-pattern>/Wipe</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
